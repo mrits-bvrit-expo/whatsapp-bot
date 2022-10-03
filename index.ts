@@ -1,10 +1,14 @@
 import * as qrcode from 'qrcode-terminal';
 import WAWebJS, { Client, LocalAuth } from 'whatsapp-web.js';
+import mongoose from 'mongoose';
+import { readdirSync } from 'fs';
+import { join, resolve } from 'path';
+import { config } from 'dotenv';
+
 import { success, fail, db } from './utils/chalk';
 import { messageCheck } from './utils/messageChecker';
-import { readdirSync } from 'fs';
-import { join } from 'path';
 
+config({ path: resolve(__dirname, 'config.env') });
 const command = new Map();
 const commandFiles = readdirSync(join(__dirname, 'commands'));
 commandFiles.forEach(async (commands) => {
@@ -12,6 +16,17 @@ commandFiles.forEach(async (commands) => {
 	command.set(cmd.name, cmd);
 });
 
+const DB = (process.env.DB_USERNAME as string).replace(
+	'<password>',
+	process.env.DB_PASSWORD as string
+);
+
+mongoose
+	.connect(DB)
+	.then(() => {
+		db('connected to database successfully');
+	})
+	.catch((err: unknown) => fail(err));
 const client = new Client({
 	authStrategy: new LocalAuth(),
 	puppeteer: {

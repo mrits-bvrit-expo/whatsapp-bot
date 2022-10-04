@@ -26,11 +26,13 @@ export default {
 					mobileNo: (message.author as string).split('@')[0],
 				});
 			}
+			console.log(userData);
 			if (userData && userData.userType === 'student') {
 				let userPresent =
 					userData.attendance.noWorkingDays - userData.attendance.absent.length;
 
 				let avg = await User.aggregate([
+					{ $match: { attendance: { $ne: null } } },
 					{
 						$group: {
 							_id: {
@@ -42,6 +44,7 @@ export default {
 						},
 					},
 				]);
+				console.log(avg);
 				let requiredArr = avg.filter(
 					(data) =>
 						data._id.yearOfStudy === userData?.yearOfStudy &&

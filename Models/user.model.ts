@@ -1,6 +1,12 @@
 import { Schema, model } from 'mongoose';
 import { AttendanceSchema } from './attendance.model';
 
+interface Attendance {
+	semester: number;
+	yearOfStudy: number;
+	noWorkingDays: number;
+	absent: Date[];
+}
 enum userType {
 	admin,
 	faculty,
@@ -12,9 +18,11 @@ interface user {
 	rollNo: string;
 	yearOfStudy: number;
 	semester: number;
-	attendance: Schema;
+	attendance: Attendance;
 	marks: Schema;
 	mobileNo: number;
+	branch: string;
+	section: string;
 }
 
 const UserSchema = new Schema<user>({
@@ -40,6 +48,15 @@ const UserSchema = new Schema<user>({
 	},
 	attendance: {
 		type: AttendanceSchema,
+	},
+	branch: {
+		type: String,
+		enum: ['CSE', 'ECE', 'IT'],
+		required: true,
+	},
+	section: {
+		type: String,
+		default: 'A',
 	},
 	mobileNo: {
 		type: Number,

@@ -15,7 +15,7 @@ export default {
 		try {
 			let taggedUser = await message.getMentions();
 			let userData: any;
-			if (args.length > 0 && taggedUser.length > 0) {
+			if (args.length === 1 && taggedUser.length === 1) {
 				userData = await User.findOne({
 					mobileNo: taggedUser[0]['number'],
 				});

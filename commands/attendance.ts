@@ -44,7 +44,6 @@ export default {
 						},
 					},
 				]);
-				console.log(avg);
 				let requiredArr = avg.filter(
 					(data) =>
 						data._id.yearOfStudy === userData?.yearOfStudy &&

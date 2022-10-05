@@ -45,10 +45,16 @@ export default {
 			list.forEach((li, i) => (msg += `${i + 1}) ${li.title} \n`));
 			msg += '\n```Select your option i.e CSE,IT,ECE```';
 
-			client.sendMessage(message.author as string, msg);
+			client.sendMessage(message.from as string, msg);
 			const messageHandler = (message: WAWebJS.Message) => {
 				if (message.body.toLowerCase().trim() === 'cse') {
-					client.sendMessage(message.from as string, 'selected CSE');
+					client.sendMessage(message.from as string, 'https://drive.google.com/drive/folders/1EslwKZP1uL_OruoBGkH3eSCiCmJ_b9qy?usp=sharing');
+				}
+				else if (message.body.toLowerCase().trim() === 'it') {
+					client.sendMessage(message.from as string, 'https://drive.google.com/drive/folders/1jg-n3y6vL8YvSoRt_MDJmZIpBK0W77SP?usp=sharing');
+				}
+				else if (message.body.toLowerCase().trim() === 'ece') {
+					client.sendMessage(message.from as string, 'https://drive.google.com/drive/folders/1VkpDuIDIiqcM63Usjtcv0EZGxHM9FrOT?usp=sharing');
 				}
 				client.removeListener('message', messageHandler);
 			};

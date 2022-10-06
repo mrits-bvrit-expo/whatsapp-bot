@@ -10,7 +10,7 @@ export default {
 		try {
 			let startTime = process.hrtime();
 			let endTime = process.hrtime(startTime);
-			message.reply(`took ${endTime[0]} seconds`, message.from);
+			message.reply(`took ${endTime[1]} nano-seconds`, message.from);
 		} catch (err) {
 			fail(err);
 			client.sendMessage(message.from, `${err}`);

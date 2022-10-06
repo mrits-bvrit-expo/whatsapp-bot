@@ -3,11 +3,11 @@ import { resolve } from 'path';
 import { fail } from '../utils/chalk';
 import User from '../Models/user.model';
 export default {
-	name: 'timetable',
+	name: 'profile',
 	type: 'user',
-	description: 'sends the timetable to the user',
+	description: 'Displays the user information',
 	usage:
-		'!timetable or !timetable <@mention> or !timetable <branch> <section> <year> <semester> \n\t Ex: !timetable IT A 4 1 or !acal @mandeep',
+		'!profile or !profile <@mention> or !profile <roll no>\n\t Ex: !profile 19S11A1218 or !acal @mandeep',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,
@@ -26,30 +26,18 @@ export default {
 				userData = await User.findOne({
 					mobileNo: (message.author as string).split('@')[0],
 				});
-			} else if (args.length > 0) {
-				userData = {
-					branch: args[0],
-					section: args[1],
-					yearOfStudy: args[2],
-					semester: args[3],
-				};
 			}
-
-			let timetable = MessageMedia.fromFilePath(
-				resolve(
-					__dirname,
-					'../Assets/timetables',
-					(userData?.branch as string).toLowerCase(),
-					`${userData?.yearOfStudy}-${userData?.semester}`,
-					(userData?.section as string).toLowerCase(),
-					'timetable.png'
-				)
-			);
-			client.sendMessage(message.from, timetable);
+			if (userData && userData.name) {
+				let msg = '*Details* \n\n';
+				msg += `🟢*Name*: ${userData.name}\n🟢*Branch*: ${userData.branch}\n🟢*Year*:${userData.yearOfStudy}\n🟢*Semester*: ${userData.semester}\n🟢*roll no*: ${userData.rollNo}\n🟢*mobile*: ${userData.mobileNo}`;
+				client.sendMessage(message.from, msg);
+			} else {
+				client.sendMessage(message.from, 'User not found');
+			}
 		} catch (err) {
 			client.sendMessage(message.from, `${err}`);
 			fail(err);
-			client.sendMessage(message.from, `timetable not found`);
+			client.sendMessage(message.from, `User not found`);
 		}
 	},
 };

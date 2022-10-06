@@ -5,8 +5,10 @@ import User from '../Models/user.model';
 
 export default {
 	name: 'attendance',
-	type: 'student',
+	type: 'user',
 	description: 'for fetching attendance details',
+	usage:
+		'!attendance <rollNo> or !attendance <@mention>\n\t Ex: !attendance 19S11A1208 or !attendance @mandeep',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,
@@ -76,13 +78,18 @@ export default {
 					Buffer.from(chartBin).toString('base64')
 				);
 				client.sendMessage(message.from, media, {
-					caption: `*Name*: ${userData.name}\n*Branch*: ${userData.branch}\n*Year*: ${userData.yearOfStudy}\n*Section*: ${userData.section}`,
+					caption: `🌟 *Name*: ${userData.name}\n🌟 *Branch*: ${userData.branch}\n🌟 *Year*: ${userData.yearOfStudy}\n🌟 *Section*: ${userData.section}`,
 				});
 			} else {
-				client.sendMessage(message.from, 'User Not found or not a student');
+				client.sendMessage(message.from, 'User not found or not a student');
 			}
 		} catch (err) {
 			fail(err);
+			client.sendMessage(message.from, `${err}`);
+			client.sendMessage(
+				message.from,
+				'Error occured, please contact developer'
+			);
 		}
 	},
 };

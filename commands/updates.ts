@@ -6,6 +6,7 @@ export default {
 	name: 'updates',
 	type: 'user',
 	description: 'Latest College and University updates',
+	usage: '!updates',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,
@@ -49,6 +50,11 @@ export default {
 			client.sendMessage(message.from, msg);
 		} catch (err) {
 			fail(err);
+			client.sendMessage(message.from, `${err}`);
+			client.sendMessage(
+				message.from,
+				'Error occured, please contact developer'
+			);
 		}
 	},
 };

@@ -5,6 +5,7 @@ export default {
 	name: 'about',
 	type: 'user',
 	description: 'About this application',
+	usage: '!about',
 	exec: (client: WAWebJS.Client, message: WAWebJS.Message, args: string[]) => {
 		try {
 			let startTime = process.hrtime();
@@ -16,6 +17,11 @@ export default {
 			);
 		} catch (err) {
 			fail(err);
+			client.sendMessage(message.from, `${err}`);
+			client.sendMessage(
+				message.from,
+				'Error occured, please contact developer'
+			);
 		}
 	},
 };

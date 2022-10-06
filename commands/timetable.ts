@@ -7,6 +7,7 @@ export default {
 	name: 'timetable',
 	type: 'user',
 	description: 'sends the timetable to the user',
+	usage: '!timetable',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,

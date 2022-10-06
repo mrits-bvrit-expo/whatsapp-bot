@@ -5,8 +5,9 @@ import { fail } from '../utils/chalk';
 
 export default {
 	name: 'assignment',
-	type: 'student',
+	type: 'user',
 	description: 'Lists assignments and submits assignments',
+	usage: '!assignment',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,

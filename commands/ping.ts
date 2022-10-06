@@ -5,6 +5,7 @@ export default {
 	name: 'ping',
 	type: 'user',
 	description: 'Ping status of the application',
+	usage: '!ping',
 	exec: (client: WAWebJS.Client, message: WAWebJS.Message, args: string[]) => {
 		try {
 			let startTime = process.hrtime();
@@ -12,6 +13,11 @@ export default {
 			message.reply(`took ${endTime[0]} seconds`, message.from);
 		} catch (err) {
 			fail(err);
+			client.sendMessage(message.from, `${err}`);
+			client.sendMessage(
+				message.from,
+				'Error occured, please contact developer'
+			);
 		}
 	},
 };

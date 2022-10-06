@@ -4,8 +4,10 @@ import User from '../Models/user.model';
 
 export default {
 	name: 'absent',
-	type: 'faculty',
+	type: 'admin',
 	description: 'marking attendance of the students',
+	usage:
+		'!absent <rollNo> <rollNo> <rollNo>\n\t Ex: *!absent 19S11A1218 19S11A1208*',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,
@@ -52,6 +54,11 @@ export default {
 			}
 		} catch (err) {
 			fail(err);
+			client.sendMessage(message.from, `${err}`);
+			client.sendMessage(
+				message.from,
+				'Error occured, please contact developer'
+			);
 		}
 	},
 };

@@ -1,4 +1,6 @@
+import { extname } from 'path';
 import WAWebJS from 'whatsapp-web.js';
+import { uploadFile } from '../utils/googleDrive';
 import Assignment from '../Models/assignment.model';
 import User from '../Models/user.model';
 import { fail } from '../utils/chalk';
@@ -90,6 +92,14 @@ export default {
 										message3: WAWebJS.Message
 									) => {
 										if (message3.hasMedia) {
+											const media = await message3.downloadMedia();
+
+											let fileName = `${userData!.branch}/${
+												userData!.yearOfStudy
+											}-${userData!.semester}/${userData!.section}/${
+												userData!.rollNo
+											}${extname(media.filename as string)}`;
+											await uploadFile(fileName, media.mimetype, media.data);
 											await Assignment.findOneAndUpdate(
 												{
 													yearOfStudy: userData!.yearOfStudy,

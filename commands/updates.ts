@@ -26,7 +26,7 @@ export default {
 				)
 					.text()
 					.trim();
-				msg += text + '\n';
+				msg += '➡ ' + text + '\n';
 			}
 			msg += '\n*College Updates*\n';
 			let collegeNotification = await axios
@@ -45,7 +45,7 @@ export default {
 					.text()
 					.trim();
 
-				msg += text + '\n';
+				msg += '➡ ' + text + '\n';
 			}
 			client.sendMessage(message.from, msg);
 		} catch (err) {

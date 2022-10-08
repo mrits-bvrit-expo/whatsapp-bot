@@ -213,7 +213,7 @@ export default {
 
 										filteredArr.forEach((arr) => {
 											arr.submittedStudents.forEach((student: any, i) => {
-												msg += `${i + 1})${student.name} [${student.rollNo}]`;
+												msg += `${i + 1})${student.name} [${student.rollNo}]\n`;
 											});
 										});
 										client.sendMessage(message.from, msg);
@@ -230,6 +230,7 @@ export default {
 							client.on('message', messageHandler1);
 						} else {
 							client.sendMessage(message.from, `No assignments found`);
+							client.removeListener('message', messageHandler1);
 						}
 					}
 				}

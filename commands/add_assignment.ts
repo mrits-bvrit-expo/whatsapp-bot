@@ -5,8 +5,10 @@ import { fail } from '../utils/chalk';
 
 export default {
 	name: 'add_assignment',
-	type: 'faculty',
+	type: 'admin',
 	description: 'Creates a new assignment for students',
+	usage:
+		'!add_assignment ||<branch>||<year>||<semester>||<section>||<subject name>||<assignment no>||<deadline>||<description>\n\t Ex: !add_assignment ||IT||4||1||A||RS&GIS||1||10-10-2022||Remote Sensing assignment 1',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,

@@ -6,6 +6,8 @@ export default {
 	name: 'cr_user',
 	type: 'admin',
 	description: 'Creates new user',
+	usage:
+		'!cr_user <@mention>||<name>||<role>||<roll no>||<year>||<semester>||<branch>\n\t Ex: !cr_user @mandeep ||Mandeep Andey||student||19S11A1218||4||1||IT',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,

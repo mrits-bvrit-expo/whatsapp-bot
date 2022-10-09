@@ -5,6 +5,7 @@ export default {
 	name: 'material',
 	type: 'user',
 	description: 'Study material for the students',
+	usage: '!material',
 	exec: (client: WAWebJS.Client, message: WAWebJS.Message, args: string[]) => {
 		try {
 			// // const buttons = new Buttons(
@@ -48,13 +49,20 @@ export default {
 			client.sendMessage(message.from as string, msg);
 			const messageHandler = (message: WAWebJS.Message) => {
 				if (message.body.toLowerCase().trim() === 'cse') {
-					client.sendMessage(message.from as string, 'https://drive.google.com/drive/folders/1EslwKZP1uL_OruoBGkH3eSCiCmJ_b9qy?usp=sharing');
-				}
-				else if (message.body.toLowerCase().trim() === 'it') {
-					client.sendMessage(message.from as string, 'https://drive.google.com/drive/folders/1jg-n3y6vL8YvSoRt_MDJmZIpBK0W77SP?usp=sharing');
-				}
-				else if (message.body.toLowerCase().trim() === 'ece') {
-					client.sendMessage(message.from as string, 'https://drive.google.com/drive/folders/1VkpDuIDIiqcM63Usjtcv0EZGxHM9FrOT?usp=sharing');
+					client.sendMessage(
+						message.from as string,
+						'https://drive.google.com/drive/folders/1EslwKZP1uL_OruoBGkH3eSCiCmJ_b9qy?usp=sharing'
+					);
+				} else if (message.body.toLowerCase().trim() === 'it') {
+					client.sendMessage(
+						message.from as string,
+						'https://drive.google.com/drive/folders/1jg-n3y6vL8YvSoRt_MDJmZIpBK0W77SP?usp=sharing'
+					);
+				} else if (message.body.toLowerCase().trim() === 'ece') {
+					client.sendMessage(
+						message.from as string,
+						'https://drive.google.com/drive/folders/1VkpDuIDIiqcM63Usjtcv0EZGxHM9FrOT?usp=sharing'
+					);
 				}
 				client.removeListener('message', messageHandler);
 			};
@@ -64,6 +72,11 @@ export default {
 			//console.log(...client.listeners('message'));
 		} catch (err) {
 			fail(err);
+			client.sendMessage(message.from, `${err}`);
+			client.sendMessage(
+				message.from,
+				'Error occured, please contact developer'
+			);
 		}
 	},
 };

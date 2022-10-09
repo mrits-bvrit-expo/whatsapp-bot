@@ -1,12 +1,15 @@
+import { extname } from 'path';
 import WAWebJS from 'whatsapp-web.js';
+import { uploadFile } from '../utils/googleDrive';
 import Assignment from '../Models/assignment.model';
 import User from '../Models/user.model';
 import { fail } from '../utils/chalk';
 
 export default {
 	name: 'assignment',
-	type: 'student',
+	type: 'user',
 	description: 'Lists assignments and submits assignments',
+	usage: '!assignment',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,
@@ -89,6 +92,14 @@ export default {
 										message3: WAWebJS.Message
 									) => {
 										if (message3.hasMedia) {
+											const media = await message3.downloadMedia();
+
+											let fileName = `${userData!.branch}/${
+												userData!.yearOfStudy
+											}-${userData!.semester}/${userData!.section}/${
+												userData!.rollNo
+											}${extname(media.filename as string)}`;
+											await uploadFile(fileName, media.mimetype, media.data);
 											await Assignment.findOneAndUpdate(
 												{
 													yearOfStudy: userData!.yearOfStudy,
@@ -202,7 +213,7 @@ export default {
 
 										filteredArr.forEach((arr) => {
 											arr.submittedStudents.forEach((student: any, i) => {
-												msg += `${i + 1})${student.name} [${student.rollNo}]`;
+												msg += `${i + 1})${student.name} [${student.rollNo}]\n`;
 											});
 										});
 										client.sendMessage(message.from, msg);
@@ -219,6 +230,7 @@ export default {
 							client.on('message', messageHandler1);
 						} else {
 							client.sendMessage(message.from, `No assignments found`);
+							client.removeListener('message', messageHandler1);
 						}
 					}
 				}

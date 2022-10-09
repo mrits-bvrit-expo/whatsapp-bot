@@ -1,5 +1,4 @@
 import WAWebJS, { MessageMedia } from 'whatsapp-web.js';
-import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { fail } from '../utils/chalk';
 import User from '../Models/user.model';
@@ -7,6 +6,8 @@ export default {
 	name: 'timetable',
 	type: 'user',
 	description: 'sends the timetable to the user',
+	usage:
+		'!timetable or !timetable <@mention> or !timetable <branch> <section> <year> <semester> \n\t Ex: !timetable IT A 4 1 or !acal @mandeep',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,
@@ -33,16 +34,7 @@ export default {
 					semester: args[3],
 				};
 			}
-			console.log(
-				resolve(
-					__dirname,
-					'../Assets/timetables',
-					(userData?.branch as string).toLowerCase(),
-					`${userData?.yearOfStudy}-${userData?.semester}`,
-					(userData?.section as string).toLowerCase(),
-					'timetable.png'
-				)
-			);
+
 			let timetable = MessageMedia.fromFilePath(
 				resolve(
 					__dirname,

@@ -21,7 +21,7 @@ export default {
 			
 			if (userData && userData.userType !== 'student') {
 				for (const rollNo of args) {
-					console.log(message.author)
+					
 					let student = await User.findOne({ rollNo });
 					if (
 						student?.userType === 'student' &&

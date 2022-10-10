@@ -37,10 +37,7 @@ export default {
 			} else {
 				client.sendMessage(message.from, 'User unauthorized');
 			}
-			// console.log(message.body);
-			// let msgArr = message.body.split('"');
-			// console.log(msgArr);
-			// console.log(message.mentionedIds);
+		
 		} catch (err) {
 			fail(err);
 			client.sendMessage(message.from, `${err}`);

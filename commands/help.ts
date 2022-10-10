@@ -21,7 +21,7 @@ export default {
 
 			for (const file of allFiles) {
 				let importedData = (await import(`./${file}`)).default;
-				console.log(importedData);
+				
 				if (importedData.type === 'admin') {
 					adminHelp += `➡ *${importedData.name}*\t[${importedData.description}]\n\tUsage: ${importedData.usage}\n\n`;
 				} else if (importedData.type === 'user') {

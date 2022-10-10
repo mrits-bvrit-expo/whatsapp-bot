@@ -26,7 +26,7 @@ const createFolder = async (folderName: string, arr: string[]) => {
 			parents,
 			mimeType: 'application/vnd.google-apps.folder',
 		};
-		console.log(fileMetaData);
+		
 		const res = await (drive.files.create as any)({
 			resource: fileMetaData,
 			fields: 'id',

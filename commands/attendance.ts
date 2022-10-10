@@ -28,7 +28,6 @@ export default {
 					mobileNo: (message.author as string).split('@')[0],
 				});
 			}
-			console.log(userData);
 			if (userData && userData.userType === 'student') {
 				let userPresent =
 					userData.attendance.noWorkingDays - userData.attendance.absent.length;

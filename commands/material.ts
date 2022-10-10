@@ -69,7 +69,6 @@ export default {
 
 			client.on('message', messageHandler);
 
-			//console.log(...client.listeners('message'));
 		} catch (err) {
 			fail(err);
 			client.sendMessage(message.from, `${err}`);

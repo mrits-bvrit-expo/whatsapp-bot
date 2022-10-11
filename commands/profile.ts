@@ -29,7 +29,7 @@ export default {
 			}
 			if (userData && userData.name) {
 				let msg = '*Details* \n\n';
-				msg += `🟢*Name*: ${userData.name}\n🟢*Branch*: ${userData.branch}\n🟢*Year*:${userData.yearOfStudy}\n🟢*Semester*: ${userData.semester}\n🟢*roll no*: ${userData.rollNo}\n🟢*mobile*: ${userData.mobileNo}`;
+				msg += `🟢 *Name* : ${userData.name}\n🟢 *Branch* : ${userData.branch}\n🟢 *Year* :${userData.yearOfStudy}\n🟢 *Semester* : ${userData.semester}\n🟢 *roll no* : ${userData.rollNo}\n🟢 *mobile* : ${userData.mobileNo}`;
 				client.sendMessage(message.from, msg);
 			} else {
 				client.sendMessage(message.from, 'User not found');

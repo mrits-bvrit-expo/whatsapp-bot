@@ -49,7 +49,10 @@ export default {
 		} catch (err) {
 			client.sendMessage(message.from, `${err}`);
 			fail(err);
-			client.sendMessage(message.from, `timetable not found`);
+			client.sendMessage(
+				message.from,
+				'Error occured, please contact developer'
+			);
 		}
 	},
 };

@@ -6,7 +6,7 @@ export default {
 	type: 'user',
 	description: 'Displays the user information',
 	usage:
-		'!profile or !profile <@mention> or !profile <roll no>\n\t Ex: !profile 19S11A1218 or !acal @mandeep',
+		'!profile or !profile <@mention> or !profile <roll no>\n\t Ex: !profile 19S11A1218 or !profile @mandeep',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,

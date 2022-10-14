@@ -7,7 +7,7 @@ export default {
 	type: 'user',
 	description: 'sends the timetable to the user',
 	usage:
-		'!timetable or !timetable <@mention> or !timetable <branch> <section> <year> <semester> \n\t Ex: !timetable IT A 4 1 or !acal @mandeep',
+		'!timetable or !timetable <@mention> or !timetable <branch> <section> <year> <semester> \n\t Ex: !timetable IT A 4 1 or !timetable @mandeep',
 	exec: async (
 		client: WAWebJS.Client,
 		message: WAWebJS.Message,
